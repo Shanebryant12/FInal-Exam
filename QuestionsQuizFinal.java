@@ -7,7 +7,8 @@ import java.lang.Math;
 FileName : "QuestionsQuizFinal".
 Author: Shane Bryant
 Date: 12/16/2019
-Purpose: */
+Purpose: Come up with 20 questions relating to java that we talked about in class! And make a program that asks the questions to the user and allows them to answer
+A quiz for about java*/
 public class QuestionsQuizFinal { 
    public static void files() throws IOException {
       	
@@ -32,9 +33,11 @@ public class QuestionsQuizFinal {
       for(int i = 0; i < questions.length; i++) {
          System.out.println(questions[i].prompt);
          String answer = keyboard.nextLine();
+         //Increments the score if the answer the user enters, matches the answer in the array
          if(answer.equalsIgnoreCase(questions[i].answer)) {
             score++;
          }
+         //If the answer the user enters does not match the answer in the array, the following message is outputted (Incorrect)
          else{
             System.out.println("=================================================");
             System.out.println("Your answer '"+answer+"'"+ " is incorrect!");
@@ -46,6 +49,7 @@ public class QuestionsQuizFinal {
       System.out.println("The percent is " + total + "%");
    } 
    public static void main(String[] args) throws IOException{ 
+      //The strings below are the questions
       String q1 = "1. What is the correct format for a case?\n" + " a. case 'A'\n b. case(A);\n c. Case''A''\n d. case (A)";
       String q2 = "2. Which of the following of a switch statement is separate from the case expressions\n (executed when none of the other cases match the control expression.)?\n a. case\n b. default:\n c. else\n d. otherwise";  
       String q3 = "3. Please input the 8 Primitive Data Types:\n[In Alphabetical Order] \n";   
@@ -60,7 +64,7 @@ public class QuestionsQuizFinal {
       String q12 = "12. What does modulus (%) do in java?\n a. Divides the two numbers and returns the end solution\n b. Adds the two numbers and divides by 2 (Average)\n c. Takes the average and multiplies it by 2\n d. Divides the two numbers and returns the remainder of the two numbers";
       String q13 = "13. What are the 3 or 4 actions you should do with any file?";
       String q14 = "14. What is the git command that allows you to download your repository from GitHub to your computer?\n a. git commit\n b. git push\n c. git add\n d. git clone";
-      String q15 = "15. What’s the git command/shortcut for staging all the changes made?\n a. git commit .\n b. git commit add .\n c. git add .\n d. git stage .";
+      String q15 = "15. Whatâ€™s the git command/shortcut for staging all the changes made?\n a. git commit .\n b. git commit add .\n c. git add .\n d. git stage .";
       String q16 = "16. What command is used to initialize a new Git repository?";
       String q17 = "17. What number from the part of code below is inclusive?\n new Random().nextInt(10);";
       String q18 = "18. What number from the part of code below is exclusive?\n new Random().nextInt(10);";
@@ -68,6 +72,7 @@ public class QuestionsQuizFinal {
       String q20 = "20. Which of the following is correct?\n a. Import java.io.IOException;\n b. import java.io.IOException;\n c. import Java.IO.IOException\n d. import java.io.IOException";
      
       Question [] questions = {
+         //Array that asks the questions (the strings) and then has a specific input (correct answer to look for)
          new Question(q1, "a"),
          new Question(q2, "b"),
          new Question(q3, "Boolean, byte, char, double, float, int, long, short"),
@@ -90,8 +95,8 @@ public class QuestionsQuizFinal {
          new Question(q20, "b"),
          
          };
-      takeQuiz(questions);
-      files();
+      takeQuiz(questions); //Calls method takeQuiz
+      files(); //Calls method files
    } 
 }
 class Question{
