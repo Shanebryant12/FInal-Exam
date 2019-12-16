@@ -10,7 +10,7 @@ Purpose: Come up with 20 questions relating to java that we talked about in clas
 A quiz for about java*/
 public class QuestionsQuizFinal { 
    public static void files() throws IOException {
-      	
+      //Reads from the file QuizAnswers.txt and starts from the 2nd line within that file and proceeds to the 24th line	
       BufferedReader in = new BufferedReader (new FileReader("QuizAnswers.txt")); //Allows text to be read from the file "Hero.txt"
       String inFile = "";
       int startLine = 1; //Text from file is outputted starting from the first line
@@ -18,6 +18,7 @@ public class QuestionsQuizFinal {
       for (int i = 0; i < startLine; i++) { 
          inFile = in.readLine(); 
       }
+      //For loop that allows each of the lines from the starting point to the end point to be read
       for (int i = startLine; i < endLine + 1; i++) {
          inFile = in.readLine();
          System.out.println(inFile); 
@@ -33,6 +34,7 @@ public class QuestionsQuizFinal {
          System.out.println(questions[i].test);
          String QuizAnswer = keyboard.nextLine();
          //Increments the score if the answer the user enters, matches the answer in the array
+         //The answer is no longer case sensitive due to the .equalIgnoreCase (they can enter in either caps or lower case letters)
          if(QuizAnswer.equalsIgnoreCase(questions[i].QuizAnswer)) {
             score++;
          }
@@ -74,7 +76,10 @@ public class QuestionsQuizFinal {
       String question20 = "20. Which of the following is correct?\n a. Import java.io.IOException;\n b. import java.io.IOException;\n c. import Java.IO.IOException\n d. import java.io.IOException";
      
       Arrays [] questions = {
-         //Array that asks the questions (the strings) and then has a specific input (correct answer to look for)
+         /*Array that asks the questions (the strings) and then has a specific input (correct answer to look for)
+         The array stores the answer to the quiz for each of the strings, so the array only holds the correct answer!
+         The answer must match what is stored in the array (each string question has an answer that correlates to it)
+         */
          new Arrays(question1, "a"),
          new Arrays(question2, "b"),
          new Arrays(question3, "Boolean, byte, char, double, float, int, long, short"),
