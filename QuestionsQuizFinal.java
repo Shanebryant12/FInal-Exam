@@ -32,9 +32,12 @@ public class QuestionsQuizFinal {
       
       for(int i = 0; i < questions.length; i++) {
          System.out.println(questions[i].test);
+         /*Calls from class Arrays to allow the user to enter an answer to the question in the array 
+         (and allows it to only correspond to that current object)
+         */
          String QuizAnswer = keyboard.nextLine();
-         //Increments the score if the answer the user enters, matches the answer in the array
          //The answer is no longer case sensitive due to the .equalIgnoreCase (they can enter in either caps or lower case letters)
+         //Increments the score if the answer the user enters, matches the answer in the array
          if(QuizAnswer.equalsIgnoreCase(questions[i].QuizAnswer)) {
             score++;
          }
@@ -53,7 +56,7 @@ public class QuestionsQuizFinal {
       System.out.println("=================================================");
    } 
    public static void main(String[] args) throws IOException{ 
-      //The strings below are the questions
+      //The strings below are the questions and some of them contain the answer choices (multiple choice)
       String question1 = "1. What is the correct format for a case?\n" + " a. case 'A'\n b. case(A);\n c. Case''A''\n d. case (A)";
       String question2 = "2. Which of the following of a switch statement is separate from the case expressions\n (executed when none of the other cases match the control expression.)?\n a. case\n b. default:\n c. else\n d. otherwise";  
       String question3 = "3. Please input the 8 Primitive Data Types:\n[In Alphabetical Order] \n";   
@@ -80,6 +83,7 @@ public class QuestionsQuizFinal {
          The array stores the answer to the quiz for each of the strings, so the array only holds the correct answer!
          The answer must match what is stored in the array (each string question has an answer that correlates to it)
          */
+         //Example the correct answer to String questions1 = 1. What is the correct format for a case?, is (a). case 'A'
          new Arrays(question1, "a"),
          new Arrays(question2, "b"),
          new Arrays(question3, "Boolean, byte, char, double, float, int, long, short"),
@@ -107,7 +111,7 @@ public class QuestionsQuizFinal {
    } 
 }
 class Arrays{
-   //Initialized String test, and String QuizAnswer
+   //Initialized String test, and String QuizAnswer inside of class Arrays
    String test;
    String QuizAnswer;
    public Arrays(String test, String QuizAnswer){
