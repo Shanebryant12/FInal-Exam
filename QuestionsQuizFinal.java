@@ -10,7 +10,7 @@ Purpose: Come up with 20 questions relating to java that we talked about in clas
 A quiz for about java*/
 public class QuestionsQuizFinal { 
    public static void files() throws IOException {
-      //Reads from the file QuizAnswers.txt and starts from the 2nd line within that file and proceeds to the 24th line	
+      	
       BufferedReader in = new BufferedReader (new FileReader("QuizAnswers.txt")); //Allows text to be read from the file "Hero.txt"
       String inFile = "";
       int startLine = 1; //Text from file is outputted starting from the first line
@@ -18,7 +18,6 @@ public class QuestionsQuizFinal {
       for (int i = 0; i < startLine; i++) { 
          inFile = in.readLine(); 
       }
-      //For loop that allows each of the lines from the starting point to the end point to be read
       for (int i = startLine; i < endLine + 1; i++) {
          inFile = in.readLine();
          System.out.println(inFile); 
@@ -26,26 +25,31 @@ public class QuestionsQuizFinal {
       	
       in.close(); //The file is closed
    }
-   public static void QUIZ(Arrays [] questions){
+   public static void QUIZ(Arrays [] questions)throws IOException {
       float score = 0;
       Scanner keyboard = new Scanner(System.in);
+      String fileName = "QuizResults.txt"; //String fileName initialized to the text file name
+      PrintWriter outFile = new PrintWriter(fileName);//PrintWriter declared | Allows user to print the results to a file
       
       for(int i = 0; i < questions.length; i++) {
          System.out.println(questions[i].test);
-         /*Calls from class Arrays to allow the user to enter an answer to the question in the array 
-         (and allows it to only correspond to that current object)
-         */
          String QuizAnswer = keyboard.nextLine();
-         //The answer is no longer case sensitive due to the .equalIgnoreCase (they can enter in either caps or lower case letters)
+         int j = 0;
+         j = i +1;
          //Increments the score if the answer the user enters, matches the answer in the array
          if(QuizAnswer.equalsIgnoreCase(questions[i].QuizAnswer)) {
+            System.out.println("=================================================");
+            System.out.println(j+". Your answer '"+QuizAnswer+"'"+ " is correct!");
+            System.out.println("=================================================");
+            outFile.println(j+". Your answer '"+QuizAnswer+"'"+ " is correct!"); 
             score++;
          }
          //If the answer the user enters does not match the answer in the array, the following message is outputted (Incorrect)
          else{
             System.out.println("=================================================");
-            System.out.println("Your answer '"+QuizAnswer+"'"+ " is incorrect!");
+            System.out.println(j+". Your answer '"+QuizAnswer+"'"+ " is incorrect!");
             System.out.println("=================================================");
+            outFile.println(j+". Your answer '"+QuizAnswer+"'"+ " is incorrect!");
          }
       }
       //Shows the raw score out of 20, and then gives the user a percentage grade
@@ -54,9 +58,14 @@ public class QuestionsQuizFinal {
       System.out.println("Your score is " + score + "/" + questions.length);
       System.out.println("The percent is " + total + "%");
       System.out.println("=================================================");
+      outFile.println("=================================================");
+      outFile.println("Your score is " + score + "/" + questions.length);
+      outFile.println("The percent is " + total + "%");
+      outFile.println("=================================================");
+      outFile.close();//Closes the write file (QuizResults.txt)
    } 
    public static void main(String[] args) throws IOException{ 
-      //The strings below are the questions and some of them contain the answer choices (multiple choice)
+      //The strings below are the questions
       String question1 = "1. What is the correct format for a case?\n" + " a. case 'A'\n b. case(A);\n c. Case''A''\n d. case (A)";
       String question2 = "2. Which of the following of a switch statement is separate from the case expressions\n (executed when none of the other cases match the control expression.)?\n a. case\n b. default:\n c. else\n d. otherwise";  
       String question3 = "3. Please input the 8 Primitive Data Types:\n[In Alphabetical Order] \n";   
@@ -79,11 +88,7 @@ public class QuestionsQuizFinal {
       String question20 = "20. Which of the following is correct?\n a. Import java.io.IOException;\n b. import java.io.IOException;\n c. import Java.IO.IOException\n d. import java.io.IOException";
      
       Arrays [] questions = {
-         /*Array that asks the questions (the strings) and then has a specific input (correct answer to look for)
-         The array stores the answer to the quiz for each of the strings, so the array only holds the correct answer!
-         The answer must match what is stored in the array (each string question has an answer that correlates to it)
-         */
-         //Example the correct answer to String questions1 = 1. What is the correct format for a case?, is (a). case 'A'
+         //Array that asks the questions (the strings) and then has a specific input (correct answer to look for)
          new Arrays(question1, "a"),
          new Arrays(question2, "b"),
          new Arrays(question3, "Boolean, byte, char, double, float, int, long, short"),
@@ -108,10 +113,11 @@ public class QuestionsQuizFinal {
          };
       QUIZ(questions); //Calls method QUIZ and asks the questions from the array, and receives input from the user. If they are correct, then their score is incremented, if wrong they still proceed to the next question
       files(); //Calls method files. At the end of the questions, the answer key to the quiz will allow the user to see which questions they got right and which ones they got wrong
+      
    } 
 }
 class Arrays{
-   //Initialized String test, and String QuizAnswer inside of class Arrays
+   //Initialized String test, and String QuizAnswer
    String test;
    String QuizAnswer;
    public Arrays(String test, String QuizAnswer){
@@ -120,6 +126,5 @@ class Arrays{
       this.QuizAnswer = QuizAnswer;
    }
 }
-
 
 
